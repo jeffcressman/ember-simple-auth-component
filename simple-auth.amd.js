@@ -8,7 +8,7 @@
 
 Ember.libraries.register('Ember Simple Auth', '0.8.0');
 
-define("simple-auth/authenticators/base", 
+define("simple-auth/authenticators/base",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -160,7 +160,7 @@ define("simple-auth/authenticators/base",
       }
     });
   });
-define("simple-auth/authorizers/base", 
+define("simple-auth/authorizers/base",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -210,7 +210,7 @@ define("simple-auth/authorizers/base",
       }
     });
   });
-define("simple-auth/configuration", 
+define("simple-auth/configuration",
   ["simple-auth/utils/load-config","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -376,7 +376,7 @@ define("simple-auth/configuration",
       })
     };
   });
-define("simple-auth/ember", 
+define("simple-auth/ember",
   ["./initializer"],
   function(__dependency1__) {
     "use strict";
@@ -386,7 +386,7 @@ define("simple-auth/ember",
       Application.initializer(initializer);
     });
   });
-define("simple-auth/initializer", 
+define("simple-auth/initializer",
   ["./configuration","./utils/get-global-config","./setup","exports"],
   function(__dependency1__, __dependency2__, __dependency3__, __exports__) {
     "use strict";
@@ -403,7 +403,7 @@ define("simple-auth/initializer",
       }
     };
   });
-define("simple-auth/mixins/application-route-mixin", 
+define("simple-auth/mixins/application-route-mixin",
   ["./../configuration","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -464,7 +464,7 @@ define("simple-auth/mixins/application-route-mixin",
         @private
       */
       beforeModel: function(transition) {
-        this._super(transition);
+        var superResult = this._super(transition);
         if (!this.get('_authEventListenersAssigned')) {
           this.set('_authEventListenersAssigned', true);
           var _this = this;
@@ -482,6 +482,7 @@ define("simple-auth/mixins/application-route-mixin",
             });
           });
         }
+        return superResult;
       },
 
       actions: {
@@ -651,7 +652,7 @@ define("simple-auth/mixins/application-route-mixin",
       }
     });
   });
-define("simple-auth/mixins/authenticated-route-mixin", 
+define("simple-auth/mixins/authenticated-route-mixin",
   ["./../configuration","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -710,7 +711,7 @@ define("simple-auth/mixins/authenticated-route-mixin",
       }
     });
   });
-define("simple-auth/mixins/authentication-controller-mixin", 
+define("simple-auth/mixins/authentication-controller-mixin",
   ["./../configuration","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -760,7 +761,7 @@ define("simple-auth/mixins/authentication-controller-mixin",
       }
     });
   });
-define("simple-auth/mixins/login-controller-mixin", 
+define("simple-auth/mixins/login-controller-mixin",
   ["./../configuration","./authentication-controller-mixin","exports"],
   function(__dependency1__, __dependency2__, __exports__) {
     "use strict";
@@ -820,7 +821,7 @@ define("simple-auth/mixins/login-controller-mixin",
       }
     });
   });
-define("simple-auth/mixins/unauthenticated-route-mixin", 
+define("simple-auth/mixins/unauthenticated-route-mixin",
   ["./../configuration","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -870,7 +871,7 @@ define("simple-auth/mixins/unauthenticated-route-mixin",
       }
     });
   });
-define("simple-auth/session", 
+define("simple-auth/session",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -1225,7 +1226,7 @@ define("simple-auth/session",
       })
     });
   });
-define("simple-auth/setup", 
+define("simple-auth/setup",
   ["./configuration","./session","./stores/local-storage","./stores/ephemeral","exports"],
   function(__dependency1__, __dependency2__, __dependency3__, __dependency4__, __exports__) {
     "use strict";
@@ -1344,7 +1345,7 @@ define("simple-auth/setup",
       session.restore().then(advanceReadiness, advanceReadiness);
     }
   });
-define("simple-auth/stores/base", 
+define("simple-auth/stores/base",
   ["../utils/objects-are-equal","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -1419,7 +1420,7 @@ define("simple-auth/stores/base",
       }
     });
   });
-define("simple-auth/stores/ephemeral", 
+define("simple-auth/stores/ephemeral",
   ["./base","exports"],
   function(__dependency1__, __exports__) {
     "use strict";
@@ -1480,7 +1481,7 @@ define("simple-auth/stores/ephemeral",
       }
     });
   });
-define("simple-auth/stores/local-storage", 
+define("simple-auth/stores/local-storage",
   ["./base","../utils/objects-are-equal","../configuration","exports"],
   function(__dependency1__, __dependency2__, __dependency3__, __exports__) {
     "use strict";
@@ -1572,7 +1573,7 @@ define("simple-auth/stores/local-storage",
       }
     });
   });
-define("simple-auth/utils/get-global-config", 
+define("simple-auth/utils/get-global-config",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -1582,7 +1583,7 @@ define("simple-auth/utils/get-global-config",
       return Ember.get(global, 'ENV.' + scope) || {};
     }
   });
-define("simple-auth/utils/load-config", 
+define("simple-auth/utils/load-config",
   ["exports"],
   function(__exports__) {
     "use strict";
@@ -1600,7 +1601,7 @@ define("simple-auth/utils/load-config",
       };
     }
   });
-define("simple-auth/utils/objects-are-equal", 
+define("simple-auth/utils/objects-are-equal",
   ["exports"],
   function(__exports__) {
     "use strict";
